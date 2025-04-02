@@ -14,8 +14,6 @@ function Chapters() {
         };
         fetchChapters();
     }, [bookData.id]);
-
-    console.log("Hello");
     
     return (
         <div className="flex flex-wrap gap-4 p-4 justify-center">

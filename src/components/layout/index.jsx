@@ -7,10 +7,11 @@ import {
 } from "@/components/ui/breadcrumb"
 import { ModeToggle } from "@/components/theme-toggle"
 import { useBook } from "@/context/book-context"
+import { useParams } from "react-router"
 
 export default function Layout({ children }) {
     const bookData = useBook()
-
+    const { chapterID } = useParams()
     return (
         <SidebarProvider>
             <AppSidebar />
@@ -22,13 +23,13 @@ export default function Layout({ children }) {
                         <Breadcrumb>
                             <BreadcrumbList>
                                 <BreadcrumbItem className="block">
-                                    <BreadcrumbLink href="#">
+                                    <BreadcrumbLink href={`/${bookData?.id}`}>
                                         {bookData?.name || "Select a Book"}
                                     </BreadcrumbLink>
                                 </BreadcrumbItem>
                                 <BreadcrumbSeparator className="block" />
                                 <BreadcrumbItem>
-                                    <BreadcrumbPage>Select a Chapter</BreadcrumbPage>
+                                    <BreadcrumbPage>{chapterID ?? "Select a Chapter"}</BreadcrumbPage>
                                 </BreadcrumbItem>
                             </BreadcrumbList>
                         </Breadcrumb>

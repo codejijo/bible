@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/context/theme-context';
 import { BookProvider } from './context/book-context';
 import Welcome from '@/components/pages/welcome';
 import Chapters from '@/components/pages/chapters';
+import Verses from './components/pages/verses';
 
 export const RootURL = "https://bible-api.com/data"
 
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, Component: Welcome },
       { path: "/:bookID", Component: Chapters },
+      { path: "/:bookID/:chapterID", Component: Verses },
     ],
   },
 ]);
