@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import './index.css'
 import App from '@/App.jsx'
 import { ThemeProvider } from '@/context/theme-context';
+import { BookProvider } from './context/book-context';
 import Welcome from '@/components/pages/welcome';
 import Chapters from '@/components/pages/chapters';
 
@@ -23,7 +24,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <RouterProvider router={router} />
+      <BookProvider>
+        <RouterProvider router={router} />
+      </BookProvider>
     </ThemeProvider>
   </StrictMode>,
 )

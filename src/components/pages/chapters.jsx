@@ -1,24 +1,29 @@
-import { RootURL } from "@/main";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { NavLink } from "react-router";
+import { RootURL } from "@/main";
+import { useBook } from "@/context/book-context";
 
 function Chapters() {
-    const { bookID } = useParams();
+    const bookData = useBook()
     const [chapters, setChapters] = useState([]);
     useEffect(() => {
         const fetchChapters = async () => {
-            const response = await fetch(`${RootURL}/web/${bookID}`);
+            const response = await fetch(`${RootURL}/web/${bookData.id}`);
             const data = await response.json();
             setChapters(data.chapters);
         };
         fetchChapters();
-    }, [bookID]);
+    }, [bookData.id]);
+
+    console.log("Hello");
+    
     return (
         <div className="flex flex-wrap gap-4 p-4 justify-center">
+            <h2 className="w-full text-center text-7xl mb-5 font-semibold">{bookData?.name}</h2>
             {chapters.map((chapter) => (
-                <div className="flex justify-center items-center h-12 w-12 rounded-lg bg-muted/50 text-center text-xl font-bold text-muted-foreground" key={chapter.chapter}>
+                <NavLink key={"Chapter-" + chapter.chapter} to={`/${bookData.id}/${chapter.chapter}`} className="flex justify-center items-center h-12 w-12 rounded-lg bg-muted/50 text-center text-xl font-bold text-muted-foreground">
                     <span>{chapter.chapter}</span>
-                </div>
+                </NavLink>
             ))}
         </div>
     )

@@ -1,22 +1,16 @@
 import { AppSidebar } from "@/components/app-sidebar"
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
 import { Separator } from "@/components/ui/separator"
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import {
-    SidebarInset,
-    SidebarProvider,
-    SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { Outlet } from "react-router"
+    Breadcrumb, BreadcrumbItem, BreadcrumbLink,
+    BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator
+} from "@/components/ui/breadcrumb"
 import { ModeToggle } from "@/components/theme-toggle"
+import { useBook } from "@/context/book-context"
 
 export default function Layout({ children }) {
+    const bookData = useBook()
+
     return (
         <SidebarProvider>
             <AppSidebar />
@@ -29,19 +23,18 @@ export default function Layout({ children }) {
                             <BreadcrumbList>
                                 <BreadcrumbItem className="block">
                                     <BreadcrumbLink href="#">
-                                        Building Your Application
+                                        {bookData?.name || "Select a Book"}
                                     </BreadcrumbLink>
                                 </BreadcrumbItem>
                                 <BreadcrumbSeparator className="block" />
                                 <BreadcrumbItem>
-                                    <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                                    <BreadcrumbPage>Select a Chapter</BreadcrumbPage>
                                 </BreadcrumbItem>
                             </BreadcrumbList>
                         </Breadcrumb>
                         <ModeToggle />
                     </div>
                 </header>
-                <Outlet />
                 {children}
             </SidebarInset>
         </SidebarProvider>
