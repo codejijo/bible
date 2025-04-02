@@ -1,7 +1,6 @@
 {
   "name": "bible",
   "private": true,
-  "homepage": "https://codejijo.github.io/bible/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

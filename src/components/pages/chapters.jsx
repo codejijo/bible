@@ -15,7 +15,7 @@ function Chapters() {
     }, [bookID]);
     return (
         <div className="flex flex-wrap gap-4 p-4 justify-center">
-            {chapters != [] && chapters.map((chapter) => (
+            {chapters.map((chapter) => (
                 <div className="flex justify-center items-center h-12 w-12 rounded-lg bg-muted/50 text-center text-xl font-bold text-muted-foreground" key={chapter.chapter}>
                     <span>{chapter.chapter}</span>
                 </div>
