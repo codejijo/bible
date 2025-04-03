@@ -2,13 +2,11 @@ import React from 'react'
 
 function Welcome() {
     return (
-        <div className="flex flex-1 flex-col gap-4 p-4">
-            {Array.from({ length: 24 }).map((_, index) => (
-                <div
-                    key={index}
-                    className="aspect-video h-12 w-full rounded-lg bg-muted/50"
-                />
-            ))}
+        <div className="flex justify-center items-center h-full flex-col gap-4 p-4">
+            <div className="flex flex-col">
+                <span className="text-2xl font-medium ml-1 -mb-3">Holy</span>
+                <h1 className="text-8xl font-bold">BIBLE</h1>
+            </div>
         </div>
     )
 }

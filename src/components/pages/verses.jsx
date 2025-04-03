@@ -1,20 +1,9 @@
-import { useState, useEffect } from "react";
-import { NavLink, useParams } from "react-router";
-import { RootURL } from "@/main";
+import { useLoaderData } from "react-router";
 import { useBook } from "@/context/book-context";
 
 function Verses() {
-    const bookData = useBook()
-    const { chapterID } = useParams()
-    const [verses, setVerses] = useState([]);
-    useEffect(() => {
-        const fetchVerses = async () => {
-            const response = await fetch(`${RootURL}/web/${bookData.id}/${chapterID}`);
-            const data = await response.json();
-            setVerses(data.verses);
-        };
-        fetchVerses();
-    }, [chapterID]);
+    const bookData = useBook();
+    const { verses } = useLoaderData();
 
     return (
         <div className="flex flex-wrap gap-4 p-4 justify-center">

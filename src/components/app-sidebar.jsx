@@ -12,6 +12,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { navData } from "@/constants/Data"
+import { useBook } from "@/context/book-context";
 
 // This is sample data.
 // const data = {
@@ -148,6 +149,8 @@ import { navData } from "@/constants/Data"
 const data = navData;
 
 export function AppSidebar({ ...props }) {
+  const bookData = useBook()
+
   return (
     <Sidebar {...props}>
       <SidebarHeader>
@@ -165,7 +168,7 @@ export function AppSidebar({ ...props }) {
               <SidebarMenu>
                 {item.items.map((item) => (
                   <SidebarMenuItem key={item.name}>
-                    <SidebarMenuButton asChild isActive={item.isActive}>
+                    <SidebarMenuButton asChild isActive={item.id === bookData?.id}>
                       <a href={item.url}>{item.name}</a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

@@ -1,20 +1,10 @@
-import { useState, useEffect } from "react";
-import { NavLink } from "react-router";
-import { RootURL } from "@/main";
+import { NavLink, useLoaderData } from "react-router";
 import { useBook } from "@/context/book-context";
 
 function Chapters() {
     const bookData = useBook()
-    const [chapters, setChapters] = useState([]);
-    useEffect(() => {
-        const fetchChapters = async () => {
-            const response = await fetch(`${RootURL}/web/${bookData.id}`);
-            const data = await response.json();
-            setChapters(data.chapters);
-        };
-        fetchChapters();
-    }, [bookData.id]);
-    
+    const { chapters } = useLoaderData();
+
     return (
         <div className="flex flex-wrap gap-4 p-4 justify-center">
             <h2 className="w-full text-center text-7xl mb-5 font-semibold">{bookData?.name}</h2>
