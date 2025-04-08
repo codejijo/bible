@@ -33,10 +33,7 @@ const router = createBrowserRouter([
         loader: async ({ params }) => {
           let data = await fetchData(params.bookID)
           return { chapters: data }
-        },
-        hydrateFallbackElement: (
-          <div className='flex w-full h-full justify-center items-center'>Loading..</div>
-        )
+        }
       },
       {
         path: "/:bookID/:chapterID",
@@ -44,18 +41,11 @@ const router = createBrowserRouter([
         loader: async ({ params }) => {
           let data = await fetchData(params.bookID, params.chapterID)
           return { verses: data }
-        },
-        hydrateFallbackElement: (
-          <div className='flex w-full h-full justify-center items-center'>Loading..</div>
-        )
+        }
       },
     ],
   },
-], {
-  future: {
-    v7_partialHydration: true,
-  }
-}
+]
 );
 
 createRoot(document.getElementById('root')).render(

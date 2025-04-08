@@ -10,7 +10,7 @@ function Verses() {
         <div className="flex flex-wrap gap-4 p-4 justify-center">
             <h2 className="w-full text-center text-7xl mb-5 font-semibold">{bookData?.name}</h2>
             {verses.map((verse) => (
-                <div key={`Verse-${verse.verse}`} className="h-auto w-full rounded-lg bg-muted/50 flex items-center">
+                <div key={`Verse-${verse.verse}`} id={`V-${verse.verse}`} className="h-auto w-full rounded-lg bg-muted/50 flex items-center">
                     <span className="h-full min-w-12 bg-secondary rounded-lg text-2xl flex items-center justify-center text-justify">{verse.verse}</span>
                     <span className="p-2">{verse.text}</span>
                 </div>

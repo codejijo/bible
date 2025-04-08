@@ -11,7 +11,7 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { useParams } from "react-router";
+import { NavLink, useParams } from "react-router";
 import { navData } from "@/constants/Data"
 import { getBookData } from "@/lib/utils";
 
@@ -171,7 +171,7 @@ export function AppSidebar({ ...props }) {
                 {item.items.map((item) => (
                   <SidebarMenuItem key={item.name}>
                     <SidebarMenuButton asChild isActive={item.id === bookData?.id}>
-                      <a href={item.url}>{item.name}</a>
+                      <NavLink to={item.url}>{item.name}</NavLink>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
