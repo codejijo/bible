@@ -11,8 +11,9 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import { useParams } from "react-router";
 import { navData } from "@/constants/Data"
-import { useBook } from "@/context/book-context";
+import { getBookData } from "@/lib/utils";
 
 // This is sample data.
 // const data = {
@@ -149,7 +150,8 @@ import { useBook } from "@/context/book-context";
 const data = navData;
 
 export function AppSidebar({ ...props }) {
-  const bookData = useBook()
+  const { bookID } = useParams()
+  const bookData = getBookData(bookID)
 
   return (
     <Sidebar {...props}>

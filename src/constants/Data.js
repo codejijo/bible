@@ -9,6 +9,14 @@ export const navData = {
         url: ""
       },
       {
+        identifier: "kjv",
+        name: "King James Version",
+        language: "English",
+        language_code: "eng",
+        license: "Public Domain",
+        url: "https://bible-api.com/data/kjv"
+      },
+      {
         identifier: "cherokee",
         name: "Cherokee New Testament",
         language: "Cherokee",
@@ -55,14 +63,6 @@ export const navData = {
         language_code: "eng",
         license: "Public Domain",
         url: "https://bible-api.com/data/dra"
-      },
-      {
-        identifier: "kjv",
-        name: "King James Version",
-        language: "English",
-        language_code: "eng",
-        license: "Public Domain",
-        url: "https://bible-api.com/data/kjv"
       },
       {
         identifier: "ylt",

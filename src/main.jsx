@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import './index.css'
 import App from '@/App.jsx'
 import { ThemeProvider } from '@/context/theme-context';
-import { BookProvider } from './context/book-context';
+import { VersionProvider } from './context/book-context';
 import Welcome from '@/components/pages/welcome';
 import Chapters from '@/components/pages/chapters';
 import Verses from './components/pages/verses';
@@ -24,7 +24,7 @@ const fetchData = async (book, chapter = "") => {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    Component: App,
     children: [
       { index: true, Component: Welcome },
       {
@@ -61,9 +61,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <BookProvider>
+      <VersionProvider>
         <RouterProvider router={router} />
-      </BookProvider>
+      </VersionProvider>
     </ThemeProvider>
   </StrictMode>,
 )

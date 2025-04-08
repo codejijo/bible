@@ -1,9 +1,10 @@
-import { useLoaderData } from "react-router";
-import { useBook } from "@/context/book-context";
+import { useLoaderData, useParams } from "react-router";
+import { getBookData } from "@/lib/utils";
 
 function Verses() {
-    const bookData = useBook();
     const { verses } = useLoaderData();
+    const { bookID } = useParams()
+    const bookData = getBookData(bookID)
 
     return (
         <div className="flex flex-wrap gap-4 p-4 justify-center">

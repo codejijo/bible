@@ -1,47 +1,42 @@
-import { navData } from "@/constants/Data";
-import { createContext, useContext, useEffect, useState, useCallback } from "react"
-import { useParams } from "react-router";
-
+import { createContext, useContext, useState } from "react"
+ 
 const initialState = {
-    book: "GEN"
+  version: "web",
+  setVersion: () => null,
 }
-
-const BookProviderContext = createContext(initialState)
-
-export function BookProvider({
-    children,
-    defaultBook = "GEN",
-    storageKey = "book-key",
-    ...props
+ 
+const VersionProviderContext = createContext(initialState)
+ 
+export function VersionProvider({
+  children,
+  defaultVersion = "web",
+  storageKey = "book-version",
+  ...props
 }) {
-    const [book, setBook] = useState(
-        () => localStorage.getItem(storageKey) || defaultBook
-    )
-
-    const path = window.location.pathname.split("/")[1]
-
-    useEffect(() => {
-        localStorage.setItem(storageKey, path)
-        setBook(path)
-    }, [path])
-
-    const value = {
-        book
-    }
-
-    return (
-        <BookProviderContext.Provider {...props} value={value}>
-            {children}
-        </BookProviderContext.Provider>
-    )
+  const [version, setVersion] = useState(
+    () => localStorage.getItem(storageKey) || defaultVersion
+  )
+ 
+  const value = {
+    version,
+    setVersion: (version) => {
+      localStorage.setItem(storageKey, version)
+      setVersion(version)
+    },
+  }
+ 
+  return (
+    <VersionProviderContext.Provider {...props} value={value}>
+      {children}
+    </VersionProviderContext.Provider>
+  )
 }
-
-export const useBook = () => {
-    const context = useContext(BookProviderContext)
-    if (context === undefined)
-        return ""
-    else {
-        const data = navData.navMain[0]?.items.concat(navData.navMain[1]?.items).find(item => item.id == context.book)
-        return data
-    }
+ 
+export const useVersion = () => {
+  const context = useContext(VersionProviderContext)
+ 
+  if (context === undefined)
+    throw new Error("useVersion must be used within a versionProvider")
+ 
+  return context
 }

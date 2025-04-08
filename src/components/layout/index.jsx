@@ -6,13 +6,13 @@ import {
     BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator
 } from "@/components/ui/breadcrumb"
 import { ModeToggle } from "@/components/theme-toggle"
-import { useBook } from "@/context/book-context"
 import { useParams } from "react-router"
 import { House } from "lucide-react"
+import { getBookData } from "@/lib/utils"
 
 export default function Layout({ children }) {
-    const bookData = useBook()
-    const { chapterID } = useParams()
+    const { bookID, chapterID } = useParams()
+    const bookData = getBookData(bookID)
     return (
         <SidebarProvider>
             <AppSidebar />
